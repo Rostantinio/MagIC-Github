@@ -1,6 +1,8 @@
 package com.openclassrooms.magicgithub.api;
 
 import com.openclassrooms.magicgithub.model.User;
+import com.openclassrooms.magicgithub.repository.UserRepository;
+
 import java.util.List;
 import static com.openclassrooms.magicgithub.api.FakeApiServiceGenerator.generateUsers;
 
@@ -15,7 +17,9 @@ public class FakeApiService implements ApiService {
     @Override
     public List<User> getUsers() {
         // TODO: A modifier
-        return null;
+        //La méthode getUsers() de FakeApiService doit renvoyer une liste d'utilisateurs.
+        // Nous pouvons simplement renvoyer la liste users de la classe FakeApiService
+        return users;
     }
 
     /**
@@ -25,6 +29,12 @@ public class FakeApiService implements ApiService {
     @Override
     public void generateRandomUser() {
         // TODO: A modifier
+        //La méthode generateRandomUser() doit ajouter un utilisateur aléatoire de FAKE_USERS_RANDOM à la liste users
+        //de FakeApiService. Nous pouvons utiliser la méthode generateRandomUser() de la classe UserRepository pour générer
+        //un utilisateur aléatoire et l'ajouter à la liste users
+
+        UserRepository userRepository = new UserRepository(this);
+        userRepository.generateRandomUser();
     }
 
     /**
@@ -33,5 +43,9 @@ public class FakeApiService implements ApiService {
     @Override
     public void deleteUser(User user) {
         // TODO: A modifier
+        //La méthode deleteUser(User user) doit supprimer un utilisateur de la liste users de FakeApiService.
+        //Nous pouvons utiliser la méthode remove() pour supprimer l'utilisateur de la liste
+
+        users.remove(user);
     }
 }
